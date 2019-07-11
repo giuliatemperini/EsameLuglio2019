@@ -13,24 +13,23 @@ import java.util.Vector;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
-import com.app.service.DataProcessor;
+import com.app.service.AppService;
 import com.app.service.Element;
 
-
+@ComponentScan({ "com.app.controller", "com.app.service" })
 @SpringBootApplication
 public class MobileAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MobileAppApplication.class, args);
-		
-		DataProcessor.jsonDecode("http://data.europa.eu/euodp/data/api/3/action/package_show?id=yGVKnIzbkC2ZHpT6jQouDg");
-		
-		
-		DataProcessor.csvParse("dataset.csv");
-		
-	
-		
 
-		}
+		// AppService.jsonDecode("http://data.europa.eu/euodp/data/api/3/action/package_show?id=yGVKnIzbkC2ZHpT6jQouDg");
+
+		AppService.csvParse("dataset.csv");
+
+		// String s = AppService.printElement();
+
+	}
 }
